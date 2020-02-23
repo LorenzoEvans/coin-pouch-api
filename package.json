@@ -16,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/LorenzoEvans/coin-pouch-api/issues"
   },
-  "homepage": "https://github.com/LorenzoEvans/coin-pouch-api#readme"
+  "homepage": "https://github.com/LorenzoEvans/coin-pouch-api#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "knex": "^0.20.10",
+    "morgan": "^1.9.1",
+    "node-dev": "^4.0.0",
+    "sqlite3": "^4.1.1"
+  }
 }
