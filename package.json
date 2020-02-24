@@ -1,0 +1,35 @@
+{
+  "name": "coin-pouch-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LorenzoEvans/coin-pouch-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LorenzoEvans/coin-pouch-api/issues"
+  },
+  "homepage": "https://github.com/LorenzoEvans/coin-pouch-api#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-session-knex": "^1.5.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "helmet": "^3.21.2",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.20.10",
+    "knex-migrate": "^1.7.4",
+    "morgan": "^1.9.1",
+    "node-dev": "^4.0.0",
+    "sqlite3": "^4.1.1"
+  }
+}
