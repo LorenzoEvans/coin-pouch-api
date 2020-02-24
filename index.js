@@ -12,6 +12,10 @@ const port = 8000 || process.env.port ;
 // initialize server, add middle-ware
 const server = express();
 
+// import login route
+// import logout route
+// import register route
+
 server.use(helmet(),
            cors(), 
            express.json(),
@@ -25,3 +29,7 @@ server.post();
 server.delete();
 
 server.put();
+
+server.listen(port, () => {
+  console.log(`Server running live on ${port}`)
+})
