@@ -13,7 +13,7 @@ const userDB = require('../DB-Functions/user-functions');
 // generate token
 
 const generate_token = function(user) {
-  const payload {user: user};
+  const payload = {user: user};
   const secret = process.env.JWT_SEC;
   const options = {
     expiresIn: "8h",
@@ -24,5 +24,17 @@ const generate_token = function(user) {
 }
 
 router.post('/', (req, res) => {
-  
+  const user = req.body;
+  userDB.login(users)
+        .then((users) => {
+          if (users.length || bcrypt.compareSync(user.password, users[0].password)) {
+            const token = generate_token(user);
+            res.json({message: "Login successful", token: token});
+          }
+        })
+        .catch((err) => {
+          res.status(500).json({error_message: "Unable to login!", error: err.message})
+        })
 })
+
+module.exports = router;
