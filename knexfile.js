@@ -10,7 +10,7 @@ module.exports = {
     useNullAsDefault: true,
   },
   migrations: {
-    directory './API/Migrations'
+    directory: './API/Migrations'
   },
   seeds: {
     directory: './DB/Seeds'
