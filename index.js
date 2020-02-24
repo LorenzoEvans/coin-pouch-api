@@ -16,10 +16,10 @@ const server = express();
 // import logout route
 // import register route
 
-server.use(helmet(),
-           cors(), 
-           express.json(),
-           logger('dev')
+server.use(helmet(), // basic security
+           cors(),  // cross site origin
+           express.json(), // allow for JSON parsing
+           logger('dev') // logs requests to api
            );
 
 server.get();
