@@ -1,7 +1,8 @@
 // require express
 const express = require('express');
 // require router
-const router = express.Router();
+// require axios
+const axios = require('axios');
 // require jwt
 const jwt = require('jwt');
 // require bcrypt
@@ -11,6 +12,12 @@ const pw_check = require('../MW-Functions/middleware');
 // require user DB
 const userDB = require('../DB-Functions/user-functions');
 // generate token
+
+const Zk = require('@nuid/zk');
+
+const body = Zk.proofFromSecret('test');
+
+const base_url = "https://auth.nuid.io/"
 
 const generate_token = function(user) {
   const payload = {user: user};
@@ -23,18 +30,19 @@ const generate_token = function(user) {
   return jwt.sign(payload, secret, options);
 }
 
-router.post('/', (req, res) => {
-  const user = req.body;
-  userDB.login(users)
-        .then((users) => {
-          if (users.length || bcrypt.compareSync(user.password, users[0].password)) {
-            const token = generate_token(user);
-            res.json({message: "Login successful", token: token});
-          }
-        })
-        .catch((err) => {
-          res.status(500).json({error_message: "Unable to login!", error: err.message})
-        })
-})
+const makeConfig = (method, body, headers) => {
+  if (headers) {
+    const axiosConfigObject = {method: method, body: JSON.stringify(body), headers: headers}
+  }
+  else {
+    
+    const axiosConfigObject = {method: method, body: JSON.stringify(body)}
+  }
+}
+
+const generateCredential = async () => {
+  axios.post(base_url, makeConfig('POST', body,))
+}
+
 
 module.exports = router;
