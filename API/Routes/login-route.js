@@ -1,40 +1,23 @@
 const dotenv = require('dotenv');
 dotenv.config()
-// require express
-const express = require('express');
-// require router
-// require axios
-const axios = require('axios');
-// require jwt
-// require bcrypt
-const bcrypt = require('bcryptjs');
-// require pw_check
-const pw_check = require('../MW-Functions/middleware');
-// require user DB
-const userDB = require('../DB-Functions/user-functions');
-// generate token
-
 
 const Zk = require('@nuid/zk');
+const axios = require('axios');
+const instance = axios.create({baseURl: 'https://auth.nuid.io/'})
 
-const base_url = "https://auth.nuid.io/";
+instance.defaults.headers['X-API-Key'] = process.env.NUID_API_KEY;
+instance.defaults.headers['Content-Type'] = 'application/json';
 
-
-const makeConfig = (body) => {
-    const axiosConfigObject = {body: JSON.stringify(body), headers: {'X-API-KEY': process.env.NUID_API_KEY, 'Content-Type': 'application/json'}};
-    return axiosConfigObject;
-}
+const base_url = "https://auth.nuid.io/credential";
 
 const generateCredential = async () => {
   const proof = Zk.proofFromSecret('test');
   try {
-    const response = await axios.post(base_url, makeConfig(proof));
+    const response = await axios.post(base_url);
     console.log(response);
-  }
+  } 
   catch (error) {
-    let errorObj = {error: error.message, error_msg: "There was an error generating credentials."}
-    console.log(error)
+    console.log(error.message)
+    console.debug(error)
   }
 }
-
-console.log(generateCredential())
